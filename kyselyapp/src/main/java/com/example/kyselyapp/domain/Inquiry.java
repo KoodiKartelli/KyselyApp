@@ -2,6 +2,15 @@ package com.example.kyselyapp.domain;
 
 public class Inquiry {
 	Long inquiryid;
+	String inquiry;
+	String description;
+	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public Long getInquiryid() {
 		return inquiryid;
 	}
@@ -14,5 +23,5 @@ public class Inquiry {
 	public void setInquiry(String inquiry) {
 		this.inquiry = inquiry;
 	}
-	String inquiry;
+	
 }
