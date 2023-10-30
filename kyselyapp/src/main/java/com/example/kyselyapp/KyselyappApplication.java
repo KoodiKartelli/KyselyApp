@@ -21,7 +21,6 @@ public class KyselyappApplication {
 	}
 	
 @Bean
-<<<<<<< HEAD
 public CommandLineRunner demo(Inquiryrepository inquiryRepository, QuestionRepository questionRepository) {
     return (args) -> {
         List<Question> questions = new ArrayList<>();
@@ -34,15 +33,7 @@ public CommandLineRunner demo(Inquiryrepository inquiryRepository, QuestionRepos
 
         inquiryRepository.save(inquiry);
     };
-=======
-public CommandLineRunner demo(Inquiryrepository inquiryRepository) {
-	return (args) ->{
-		
-		inquiryRepository.save(new Inquiry("Onko nuoriso pilalla", "No onko"));
-		
-	};
->>>>>>> a7e4ced15f303c94d1d763171a83d197b2d49836
-}
 
+}
 
 }
