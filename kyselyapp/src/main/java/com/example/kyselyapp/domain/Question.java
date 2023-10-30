@@ -18,17 +18,18 @@ public class Question {
 	String text;
 
 	@ManyToOne
-	@JsonIgnoreProperties("inquiries")
+	@JsonIgnoreProperties("questions")
 	@JoinColumn(name = "inquiryid")
 	private Inquiry inquiry;
 
-	public Question(String text) {
-		super();
-		this.text = text;
-	}
 	
+
+	public Question(String text, Inquiry inquiry) {
+		this.text = text;
+		this.inquiry = inquiry;
+	}
+
 	public Question() {
-		
 	}
 
 	public Long getQuestionId() {
@@ -51,9 +52,15 @@ public class Question {
         this.inquiry = inquiry;
     }
 
+	public Inquiry getInquiry() {
+		return inquiry;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "Question [questionId=" + questionId + ", text=" + text + "]";
+		return "Question [questionId=" + questionId + ", text=" + text + ", inquiry=" + inquiry + "]";
 	}
 
 }
