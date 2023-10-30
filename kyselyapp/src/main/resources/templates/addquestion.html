@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>Add question</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+	<h1>Add a question</h1>
+	<form th:object="${question}" th:action="@{/save}" action="#"
+		method="post">
+		<label for="question">Question:</label> <input type="text"
+			id="question" th:field=*{text} /><br>
+			<input type="submit" value="Add"/>
+	</form>
+</body>
+</html>
