@@ -16,7 +16,8 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>Inquiry</th>
+                <th>Inquiry Id</th>
+                <th>Title</th>
                 <th>Description</th>             
             </tr>            
         </thead>
@@ -24,19 +25,11 @@
         <tbody>
           
 			 
-<th:block th:each="inquiry : ${books}">
+<th:block th:each="inquiry : ${inquiries}">
                 <tr >
-                    <td th:text="${book.title}"></td>
-                    <td th:text="${book.author}"></td>
-                    <td th:text="${book.isbn}"></td>
-                    <td th:text="${book.publicationYear}"></td>
-                    <td th:if="${book.category != null}" th:text="${book.category.name}">Category</td>
-					<td th:if="${book.category == null}">No Category</td>
-
-                    <td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/edit/{id}(id=${book.id})}" class="btn btn-primary">Edit</a></td> 
-
-      
-					<td sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/delete/{id}(id=${book.id})}" class="btn btn-danger">Delete</a></td>
+                    <td th:text="${inquiry.inquiryid}"></td>
+                    <td th:text="${inquiry.title}"></td>
+                    <td th:text="${inquiry.description}"></td>
                     
                      
                 </tr>
@@ -45,12 +38,7 @@
         
         </tbody>
     </table>
-    
-		<form th:action="@{/logout}" method=
-		"post" style="display:inline;">
-		<input type="submit" value="Sign Out" class="btn btn-warning"/>
-		</form>
 
-    <a href="/add" class="btn btn-primary" sec:authorize="hasRole('ROLE_ADMIN')">Add New Book</a>
+    <a href="../templates/addinquiry.html" class="btn btn-primary">Add New Inquiry</a>
 </body>
 </html>
