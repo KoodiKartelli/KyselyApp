@@ -13,29 +13,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.kyselyapp.domain.Inquiry;
 import com.example.kyselyapp.domain.Inquiryrepository;
+import com.example.kyselyapp.domain.Question;
 
 @Controller
 public class InquiryRestController{
 	@Autowired
-	private Inquiryrepository irepository;
-	
+	private Inquiryrepository inquiryRepository;
 
-
-@RequestMapping(value="/inquiry", method = RequestMethod.GET)
-public @ResponseBody List<Inquiry> inquiryListRest(){
-	return (List<Inquiry>) irepository.findAll();
-}
-
-@RequestMapping(value="/inquiry/{id}", method = RequestMethod.GET)
-public @ResponseBody Optional<Inquiry> findInquiryRest(@PathVariable("id") Long inquiryid){
-	return irepository.findById(inquiryid);
+	@RequestMapping(value="/inquiries/{id}/questions", method = RequestMethod.GET)
+	public @ResponseBody List<Question> findQuestionsByInquiryId(@PathVariable("id") Long inquiryId){
+		Optional<Inquiry> inquiryOptional = inquiryRepository.findById(inquiryId);
+		Inquiry inquiry = inquiryOptional.get();
+		return inquiry.getQuestions();
 	}
-
-@RequestMapping(value = "/inquirylist")
-public String inquirylist(Model model) {
-	List<Inquiry> inquiry = (List<Inquiry>) irepository.findAll();
-	model.addAttribute("inquiry", inquiry);
-	return "inquirylist";
-}
-
+	
 }
