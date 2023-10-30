@@ -21,6 +21,7 @@ public class InquiryRestController{
 	
 	
 	
+	
 
 /*
 @RequestMapping(value="/inquiry", method = RequestMethod.GET)
