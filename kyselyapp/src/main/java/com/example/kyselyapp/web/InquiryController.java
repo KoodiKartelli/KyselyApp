@@ -14,6 +14,12 @@ public class InquiryController {
     
     @Autowired
     Inquiryrepository inquiryRepository;
+    
+    @RequestMapping(value = "/inquirylist", method = RequestMethod.GET)
+    public String getInquiries(Model model) {
+     model.addAttribute("inquiries", inquiryRepository.findAll());
+     return "inquirylist";
+    }
 
     @RequestMapping(value = "/addinquiry")
     public String addInquiry(Model model) {
