@@ -26,5 +26,9 @@ public class InquiryController {
         inquiryRepository.save(inquiry);
         return "redirect:inquirylist";
      }
+     
+     
+     
+     
     
 }

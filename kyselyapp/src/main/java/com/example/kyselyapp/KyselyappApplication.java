@@ -16,10 +16,10 @@ public class KyselyappApplication {
 	}
 	
 @Bean
-public CommandLineRunner demo(Inquiryrepository irepository) {
+public CommandLineRunner demo(Inquiryrepository inquiryRepository) {
 	return (args) ->{
 		
-		irepository.save(new Inquiry("Onko nuoriso pilalla", "No onko"));
+		inquiryRepository.save(new Inquiry("Onko nuoriso pilalla", "No onko"));
 		
 	};
 }

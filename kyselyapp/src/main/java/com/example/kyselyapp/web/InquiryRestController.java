@@ -19,8 +19,10 @@ public class InquiryRestController{
 	@Autowired
 	private Inquiryrepository irepository;
 	
+	
+	
 
-
+/*
 @RequestMapping(value="/inquiry", method = RequestMethod.GET)
 public @ResponseBody List<Inquiry> inquiryListRest(){
 	return (List<Inquiry>) irepository.findAll();
@@ -37,5 +39,5 @@ public String inquirylist(Model model) {
 	model.addAttribute("inquiry", inquiry);
 	return "inquirylist";
 }
-
+*/
 }
