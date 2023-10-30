@@ -19,12 +19,27 @@ import com.example.kyselyapp.domain.Question;
 public class InquiryRestController{
 	@Autowired
 	private Inquiryrepository inquiryRepository;
-
+	
 	@RequestMapping(value="/inquiries/{id}/questions", method = RequestMethod.GET)
+	public String showQuestionsByInquiryId(@PathVariable("id") Long inquiryId, Model model){
+	    Optional<Inquiry> inquiryOptional = inquiryRepository.findById(inquiryId);
+	    if(inquiryOptional.isPresent()){
+	        Inquiry inquiry = inquiryOptional.get();
+	        model.addAttribute("questions", inquiry.getQuestions());
+	        return "questionlist"; // Olettaen, että sivun nimi on 'questionlist.html'
+	    } else {
+	        // Palauta virheviesti tai ohjaa virhesivulle
+	        return "error";
+	    }
+	}
+}
+/*@RequestMapping(value="/inquiries/{id}/questions", method = RequestMethod.GET)
 	public @ResponseBody List<Question> findQuestionsByInquiryId(@PathVariable("id") Long inquiryId){
 		Optional<Inquiry> inquiryOptional = inquiryRepository.findById(inquiryId);
 		Inquiry inquiry = inquiryOptional.get();
 		return inquiry.getQuestions();
-	}
+	}}*/
+	
+	
 
-}
+
