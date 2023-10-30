@@ -13,10 +13,22 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.kyselyapp.domain.Inquiry;
 import com.example.kyselyapp.domain.Inquiryrepository;
+import com.example.kyselyapp.domain.Question;
 
 @Controller
 public class InquiryRestController{
 	@Autowired
+<<<<<<< HEAD
+	private Inquiryrepository inquiryRepository;
+
+	@RequestMapping(value="/inquiries/{id}/questions", method = RequestMethod.GET)
+	public @ResponseBody List<Question> findQuestionsByInquiryId(@PathVariable("id") Long inquiryId){
+		Optional<Inquiry> inquiryOptional = inquiryRepository.findById(inquiryId);
+		Inquiry inquiry = inquiryOptional.get();
+		return inquiry.getQuestions();
+	}
+	
+=======
 	private Inquiryrepository irepository;
 	
 	
@@ -41,4 +53,5 @@ public String inquirylist(Model model) {
 	return "inquirylist";
 }
 */
+>>>>>>> a7e4ced15f303c94d1d763171a83d197b2d49836
 }

@@ -1,9 +1,15 @@
 package com.example.kyselyapp.domain;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Inquiry {
@@ -14,15 +20,19 @@ public class Inquiry {
 
 	String title;
 	String description;
-	
-	public Inquiry(String inquiry, String description) {
-		this.title = inquiry;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "inquiry")
+	@JsonIgnoreProperties("inquiry")
+	private List<Question> questions;
+
+	public Inquiry(String title, String description, List<Question> questions) {
+		this.title = title;
 		this.description = description;
+		this.questions = questions;
 	}
 
 	public Inquiry() {
-		this.title = null;
-		this.description = null;
+
 	}
 
 	public String getDescription() {
@@ -44,6 +54,14 @@ public class Inquiry {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public List<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
 	}
 
 	@Override

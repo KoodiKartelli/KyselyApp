@@ -1,9 +1,13 @@
 package com.example.kyselyapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Question {
@@ -12,6 +16,11 @@ public class Question {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long questionId;
 	String text;
+
+	@ManyToOne
+	@JsonIgnoreProperties("inquiries")
+	@JoinColumn(name = "inquiryid")
+	private Inquiry inquiry;
 
 	public Question(String text) {
 		super();
