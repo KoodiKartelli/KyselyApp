@@ -25,15 +25,14 @@ public CommandLineRunner demo(Inquiryrepository inquiryRepository, QuestionRepos
     return (args) -> {
         List<Question> questions = new ArrayList<>();
 
-        questions.add(new Question("Kysymys 1"));
-        questions.add(new Question("Kysymys 2"));
-        questions.add(new Question("Kysymys 3"));
-
         Inquiry inquiry = new Inquiry("Onko nuoriso pilalla", "No onko", questions);
+
+		questions.add(new Question("Kysymys 1", inquiry));
+        questions.add(new Question("Kysymys 2", inquiry));
+        questions.add(new Question("Kysymys 3", inquiry));
 
         inquiryRepository.save(inquiry);
     };
-
 }
 
 }
