@@ -17,23 +17,23 @@ import com.example.kyselyapp.domain.Inquiryrepository;
 @Controller
 public class InquiryRestController{
 	@Autowired
-	private Inquiryrepository repository;
+	private Inquiryrepository irepository;
 	
 
 
 @RequestMapping(value="/inquiry", method = RequestMethod.GET)
 public @ResponseBody List<Inquiry> inquiryListRest(){
-	return (List<Inquiry>) repository.findAll();
+	return (List<Inquiry>) irepository.findAll();
 }
 
 @RequestMapping(value="/inquiry/{id}", method = RequestMethod.GET)
 public @ResponseBody Optional<Inquiry> findInquiryRest(@PathVariable("id") Long inquiryid){
-	return repository.findById(inquiryid);
+	return irepository.findById(inquiryid);
 	}
 
 @RequestMapping(value = "/inquirylist")
 public String inquirylist(Model model) {
-	List<Inquiry> inquiry = (List<Inquiry>) repository.findAll();
+	List<Inquiry> inquiry = (List<Inquiry>) irepository.findAll();
 	model.addAttribute("inquiry", inquiry);
 	return "inquirylist";
 }
