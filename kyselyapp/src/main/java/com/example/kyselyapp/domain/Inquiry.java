@@ -30,6 +30,8 @@ public class Inquiry {
 		this.description = description;
 		this.questions = questions;
 	}
+	
+	
 
 	public Inquiry() {
 

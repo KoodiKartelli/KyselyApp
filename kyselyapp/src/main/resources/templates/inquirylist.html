@@ -31,7 +31,8 @@
                 <td th:text="${inquiry.inquiryid}"></td>
                 <td th:text="${inquiry.title}"></td>
                 <td th:text="${inquiry.description}"></td>
-                <a href="/questionlist" class="btn btn-primary">Show Question</a>     
+               <td><a th:href="@{/inquiries/{id}/questions(id=${inquiry.inquiryid})}" class="btn btn-primary">Show Question</a>
+
             </tr>
 
                 

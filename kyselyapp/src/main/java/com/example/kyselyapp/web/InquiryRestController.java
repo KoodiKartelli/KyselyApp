@@ -18,40 +18,30 @@ import com.example.kyselyapp.domain.Question;
 @Controller
 public class InquiryRestController{
 	@Autowired
-<<<<<<< HEAD
 	private Inquiryrepository inquiryRepository;
+	
+	@RequestMapping(value="/inquiries/{id}/questions", method = RequestMethod.GET)
+	public String showQuestionsByInquiryId(@PathVariable("id") Long inquiryId, Model model){
+	    Optional<Inquiry> inquiryOptional = inquiryRepository.findById(inquiryId);
+	    if(inquiryOptional.isPresent()){
+	        Inquiry inquiry = inquiryOptional.get();
+	        model.addAttribute("questions", inquiry.getQuestions());
+	        return "questionlist"; // Olettaen, että sivun nimi on 'questionlist.html'
+	    } else {
+	        // Palauta virheviesti tai ohjaa virhesivulle
+	        return "error";
+	    }
+	}
 
+	
+	
+/*
 	@RequestMapping(value="/inquiries/{id}/questions", method = RequestMethod.GET)
 	public @ResponseBody List<Question> findQuestionsByInquiryId(@PathVariable("id") Long inquiryId){
 		Optional<Inquiry> inquiryOptional = inquiryRepository.findById(inquiryId);
 		Inquiry inquiry = inquiryOptional.get();
 		return inquiry.getQuestions();
-	}
+	}*/
+		
 	
-=======
-	private Inquiryrepository irepository;
-	
-	
-	
-	
-
-/*
-@RequestMapping(value="/inquiry", method = RequestMethod.GET)
-public @ResponseBody List<Inquiry> inquiryListRest(){
-	return (List<Inquiry>) irepository.findAll();
-}
-
-@RequestMapping(value="/inquiry/{id}", method = RequestMethod.GET)
-public @ResponseBody Optional<Inquiry> findInquiryRest(@PathVariable("id") Long inquiryid){
-	return irepository.findById(inquiryid);
-	}
-
-@RequestMapping(value = "/inquirylist")
-public String inquirylist(Model model) {
-	List<Inquiry> inquiry = (List<Inquiry>) irepository.findAll();
-	model.addAttribute("inquiry", inquiry);
-	return "inquirylist";
-}
-*/
->>>>>>> a7e4ced15f303c94d1d763171a83d197b2d49836
 }

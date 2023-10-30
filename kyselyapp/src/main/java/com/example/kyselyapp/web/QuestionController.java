@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.kyselyapp.domain.Inquiryrepository;
 import com.example.kyselyapp.domain.Question;
 import com.example.kyselyapp.domain.QuestionRepository;
 
@@ -14,6 +15,8 @@ public class QuestionController {
 
 	@Autowired
 	private QuestionRepository questionRepository;
+	
+	@Autowired Inquiryrepository inquiryrepository;
 
 	@RequestMapping(value = "/allquestions", method = RequestMethod.GET)
 	public String questionList(Model model) {
@@ -27,10 +30,10 @@ public class QuestionController {
 		return "addquestion";
 	}
 
-	@RequestMapping(value="/save")
+	@RequestMapping(value="/saveq")
 	public String saveQuestion(Question question) {
 		questionRepository.save(question);
-		return "redirect:allquestions";
+		return "redirect:/allquestions";
 	}
 
 }
