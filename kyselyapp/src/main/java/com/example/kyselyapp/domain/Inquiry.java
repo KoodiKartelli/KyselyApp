@@ -36,6 +36,7 @@ public class Inquiry {
 		this.description = null;
 		this.questions = null;
 	}
+	
 
 	public String getDescription() {
 		return description;

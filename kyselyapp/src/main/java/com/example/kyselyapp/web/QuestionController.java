@@ -26,8 +26,8 @@ public class QuestionController {
 	@Autowired Inquiryrepository inquiryRepository;
 
 	//Palauttaa yhden kyselyn kysymykset
-	@RequestMapping(value="/questionlist/{id}", method = RequestMethod.GET)
-	public String showQuestionsByInquiryId(@PathVariable("id") Long inquiryid, Model model){
+	@RequestMapping(value="/questionlist/{inquiryid}", method = RequestMethod.GET)
+	public String showQuestionsByInquiryId(@PathVariable("inquiryid") Long inquiryid, Model model){
 		List<Question> questions = questionRepository.findByInquiryInquiryid(inquiryid);
 		model.addAttribute("questions", questions);
 		model.addAttribute("inquiryid", inquiryid);
@@ -43,24 +43,26 @@ public class QuestionController {
 	}
 
 	//Palauttaa kysymyksen luonti lomakkeen
-	@RequestMapping(value = "/addquestion/{id}", method = RequestMethod.GET)
-	public String addQuestionForm(@PathVariable("id") Long inquiryid, Model model) {
+	@RequestMapping(value = "/addquestion/{inquiryid}", method = RequestMethod.GET)
+	public String addQuestionForm(@PathVariable("inquiryid") Long inquiryid, Model model) {
 	Inquiry inquiry = inquiryRepository.findById(inquiryid).get();
 	Question newQuestion = new Question();
 	newQuestion.setInquiry(inquiry);
 	model.addAttribute("question", newQuestion);
     return "addquestion"; //addquestion.html
 }
-
-
+	
+	
+	/*Muutin id ---> inquiryid (@PathVariable("id") Long inquiryid, Question question, Model model) 
+	 	----> 	(@PathVariable("inquiryid") Long inquiryid, Question question, Model model)	*/
 	//Tallettaa lomakkeelta tulleet kysymyksen tiedot tietokantaan
-	@RequestMapping(value="/savequestion/{id}", method = RequestMethod.POST)
-	public String saveQuestion(@PathVariable("id") Long inquiryid, Question question, Model model) {
+	@RequestMapping(value="/savequestion/{inquiryid}", method = RequestMethod.POST)
+	public String saveQuestion(@PathVariable("inquiryid") Long inquiryid, Question question, Model model) {
     question.setInquiry(inquiryRepository.findById(inquiryid).get());
     questionRepository.save(question);
 
     // Palaa takaisin kyselyn kysymyslistanäkymään
-    return "redirect:/questionlist/{id}";
+    return "redirect:/questionlist/{inquiryid}";
 }
 
 
