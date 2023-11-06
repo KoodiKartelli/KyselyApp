@@ -7,11 +7,11 @@
 <body>
 
 	<h1>Add a question</h1>
-	<form th:object="${question}" th:action="@{/savequestion}" action="#"
+	<form th:object="${question}" th:action="@{/savequestion/{id}(id=${inquiryid})}" action="#"
 		method="post">
-		<label for="question">Question:</label> <input type="text"
-			id="question" th:field=*{text} /><br>
-			<input type="hidden" name="inquiryid" value="${inquiryid}">
+		<label for="question">Question:</label>
+			<input type="text" id="question" th:field=*{text} /><br>
+			<input type="hidden" th:field=*{inquiry.inquiryid}>
 			<input type="submit" value="Add"/>
 	</form>
 </body>

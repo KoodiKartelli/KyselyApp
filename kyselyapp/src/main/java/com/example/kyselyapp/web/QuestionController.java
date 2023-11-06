@@ -30,6 +30,7 @@ public class QuestionController {
 	public String showQuestionsByInquiryId(@PathVariable("id") Long inquiryid, Model model){
 		List<Question> questions = questionRepository.findByInquiryInquiryid(inquiryid);
 		model.addAttribute("questions", questions);
+		model.addAttribute("inquiryid", inquiryid);
 		return "questionlist";
 	    /*Optional<Inquiry> inquiryOptional = inquiryRepository.findById(inquiryId);
 	    if(inquiryOptional.isPresent()){
@@ -43,18 +44,24 @@ public class QuestionController {
 
 	//Palauttaa kysymyksen luonti lomakkeen
 	@RequestMapping(value = "/addquestion/{id}", method = RequestMethod.GET)
-	public String addQuestionForm(@RequestParam("id") Long inquiryid, Model model) {
-    model.addAttribute("inquiryid", inquiryid);
-    model.addAttribute("question", new Question());
-    return "addquestion";
+	public String addQuestionForm(@PathVariable("id") Long inquiryid, Model model) {
+	Inquiry inquiry = inquiryRepository.findById(inquiryid).get();
+	Question newQuestion = new Question();
+	newQuestion.setInquiry(inquiry);
+	model.addAttribute("question", newQuestion);
+    return "addquestion"; //addquestion.html
 }
 
 
 	//Tallettaa lomakkeelta tulleet kysymyksen tiedot tietokantaan
-	@RequestMapping(value="/savequestion", method = RequestMethod.POST)
-	public String saveQuestion(Question question) {
-		questionRepository.save(question);
-		return "redirect:/questionlist";
-	}
+	@RequestMapping(value="/savequestion/{id}", method = RequestMethod.POST)
+	public String saveQuestion(@PathVariable("id") Long inquiryid, Question question, Model model) {
+    question.setInquiry(inquiryRepository.findById(inquiryid).get());
+    questionRepository.save(question);
+
+    // Palaa takaisin kyselyn kysymyslistanäkymään
+    return "redirect:/questionlist/{id}";
+}
+
 
 }

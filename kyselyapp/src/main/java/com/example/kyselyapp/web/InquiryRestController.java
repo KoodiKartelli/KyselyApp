@@ -32,7 +32,7 @@ public class InquiryRestController{
 		return (List<Inquiry>) inquiryRepository.findAll();
 	}
 
-	@RequestMapping(value = "/inquiries/{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "/inquiries/{id}/questions", method = RequestMethod.GET)
 	public @ResponseBody Optional<Inquiry> inquiryRest(@PathVariable("id") Long id) {
 		return inquiryRepository.findById(id);
 	}
