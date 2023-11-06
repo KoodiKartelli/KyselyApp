@@ -30,11 +30,11 @@ public class Inquiry {
 		this.description = description;
 		this.questions = questions;
 	}
-	
-	
 
 	public Inquiry() {
-
+		this.title = null;
+		this.description = null;
+		this.questions = null;
 	}
 
 	public String getDescription() {

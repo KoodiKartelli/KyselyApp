@@ -16,16 +16,13 @@
 			 
 	<th:block th:each="question : ${questions}">
                 <tr >
-                    <td th:text="${question.text}"></td>
-                             
+                    <td th:text="${question.text}"></td>                     
                 </tr>
                 
      </th:block>
         
         </tbody>
     </table>
-    
-
-    <a href="/addquestion">Add New Question</a>
+    <a th:href="@{/addquestion/{id}}">Add New Question</a>
 </body>
 </html>

@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -14,31 +15,33 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.example.kyselyapp.domain.Inquiry;
 import com.example.kyselyapp.domain.Inquiryrepository;
 import com.example.kyselyapp.domain.Question;
+import com.example.kyselyapp.domain.QuestionRepository;
 
+@CrossOrigin
 @Controller
 public class InquiryRestController{
+
 	@Autowired
 	private Inquiryrepository inquiryRepository;
-	
-	@RequestMapping(value="/inquiries/{id}/questions", method = RequestMethod.GET)
-	public String showQuestionsByInquiryId(@PathVariable("id") Long inquiryId, Model model){
-	    Optional<Inquiry> inquiryOptional = inquiryRepository.findById(inquiryId);
-	    if(inquiryOptional.isPresent()){
-	        Inquiry inquiry = inquiryOptional.get();
-	        model.addAttribute("questions", inquiry.getQuestions());
-	        return "questionlist"; // Olettaen, että sivun nimi on 'questionlist.html'
-	    } else {
-	        // Palauta virheviesti tai ohjaa virhesivulle
-	        return "error";
-	    }
+
+	@Autowired
+	private QuestionRepository questionRepository;
+
+	@RequestMapping(value = "/inquiries", method = RequestMethod.GET)
+	public @ResponseBody List<Inquiry> inquiryListRest() {
+		return (List<Inquiry>) inquiryRepository.findAll();
+	}
+
+	@RequestMapping(value = "/inquiries/{id}", method = RequestMethod.GET)
+	public @ResponseBody Optional<Inquiry> inquiryRest(@PathVariable("id") Long id) {
+		return inquiryRepository.findById(id);
+	}
+
+	@RequestMapping(value = "/questions", method = RequestMethod.GET)
+	public @ResponseBody List<Question> questionListRest() {
+		return (List<Question>)questionRepository.findAll();
 	}
 }
-/*@RequestMapping(value="/inquiries/{id}/questions", method = RequestMethod.GET)
-	public @ResponseBody List<Question> findQuestionsByInquiryId(@PathVariable("id") Long inquiryId){
-		Optional<Inquiry> inquiryOptional = inquiryRepository.findById(inquiryId);
-		Inquiry inquiry = inquiryOptional.get();
-		return inquiry.getQuestions();
-	}}*/
 	
 	
 
