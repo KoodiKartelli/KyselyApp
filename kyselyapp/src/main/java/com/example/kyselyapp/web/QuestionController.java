@@ -32,14 +32,6 @@ public class QuestionController {
 		model.addAttribute("questions", questions);
 		model.addAttribute("inquiryid", inquiryid);
 		return "questionlist";
-	    /*Optional<Inquiry> inquiryOptional = inquiryRepository.findById(inquiryId);
-	    if(inquiryOptional.isPresent()){
-	        Inquiry inquiry = inquiryOptional.get();
-	        model.addAttribute("questions", inquiry.getQuestions());
-	        return "questionlist";
-	    } else {
-	        return "error";
-	    }*/
 	}
 
 	//Palauttaa kysymyksen luonti lomakkeen
