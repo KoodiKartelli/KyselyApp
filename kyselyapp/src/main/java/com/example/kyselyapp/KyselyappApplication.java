@@ -45,7 +45,7 @@ public CommandLineRunner demo(Inquiryrepository inquiryRepository, QuestionRepos
         
         inquiryRepository.save(inquiry2);
         
-   List<Question> questions3 = new ArrayList<>();
+        List<Question> questions3 = new ArrayList<>();
         
         Inquiry inquiry3 = new Inquiry("Kinkkiset kysymykset -kysely", "Maailman ärsyttävimmät kysymykset, joita kaikki vihaa, mutta niitä kysytään silti.", questions3);
         
