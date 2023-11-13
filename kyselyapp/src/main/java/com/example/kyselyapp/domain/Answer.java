@@ -10,7 +10,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
-public class Answers {
+public class Answer {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,13 +22,13 @@ public class Answers {
 	@JoinColumn(name = "questionId")
 	private Question question;
 
-	public Answers(String answer, Question question) {
+	public Answer(String answer, Question question) {
 		super();
 		this.answer = answer;
 		this.question = question;
 	}
 	
-	public Answers() {		
+	public Answer() {		
 	}
 
 	public Long getAnswerId() {
@@ -62,4 +62,3 @@ public class Answers {
 
 	
 }
-

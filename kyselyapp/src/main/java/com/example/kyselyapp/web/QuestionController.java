@@ -44,6 +44,7 @@ public class QuestionController {
 	
 	/*Muutin id ---> inquiryid (@PathVariable("id") Long inquiryid, Question question, Model model) 
 	 	----> 	(@PathVariable("inquiryid") Long inquiryid, Question question, Model model)	*/
+	
 	//Tallettaa lomakkeelta tulleet kysymyksen tiedot tietokantaan
 	@RequestMapping(value="/savequestion/{inquiryid}", method = RequestMethod.POST)
 	public String saveQuestion(@PathVariable("inquiryid") Long inquiryid, Question question, Model model) {
