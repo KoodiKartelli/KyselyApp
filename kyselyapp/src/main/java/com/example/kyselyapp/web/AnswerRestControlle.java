@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,9 +31,19 @@ public class AnswerRestControlle {
     public @ResponseBody List<Answer> answerListRest() {
         return (List<Answer>)answerRepository.findAll();
     }
-
+    
+    // Ehka pitaa muokata id ---> answerId/InquiryId
+    
     @RequestMapping(value = "/questions/{id}/answers", method = RequestMethod.GET)
     public @ResponseBody Optional<Question> questionRest(@PathVariable("id") Long id) {
-        return questionRepository.findById(id);
+        return questionRepository.findById(id);  
     }
+    
+    //Mahdollistaa uuden vastauksen tallentamisen
+    @RequestMapping(value = "/answers", method = RequestMethod.POST)
+    public @ResponseBody Answer saveAnswerRest(@RequestBody Answer answer) {
+    	return answerRepository.save(answer);
+    }
+    
+    
 }
