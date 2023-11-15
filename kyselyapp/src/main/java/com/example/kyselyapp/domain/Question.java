@@ -30,8 +30,6 @@ public class Question {
 	@JsonIgnoreProperties("question")
 	private List<Answer> answers;
 
-	
-
 	public Question(String text, Inquiry inquiry) {
 		this.text = text;
 		this.inquiry = inquiry;
@@ -64,7 +62,13 @@ public class Question {
 		return inquiry;
 	}
 
+	public List<Answer> getAnswers() {
+		return answers;
+	}
 
+	public void setAnswers(List<Answer> answers) {
+		this.answers = answers;
+	}
 
 	@Override
 	public String toString() {
