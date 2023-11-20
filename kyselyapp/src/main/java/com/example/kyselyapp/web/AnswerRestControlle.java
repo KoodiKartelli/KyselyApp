@@ -20,30 +20,32 @@ import com.example.kyselyapp.domain.QuestionRepository;
 @CrossOrigin
 @Controller
 public class AnswerRestControlle {
-    
-    @Autowired
-    private AnswerRepository answerRepository;
 
-    @Autowired
-    private QuestionRepository questionRepository;
+	@Autowired
+	private AnswerRepository answerRepository;
 
-    @RequestMapping(value = "/answers", method = RequestMethod.GET)
-    public @ResponseBody List<Answer> answerListRest() {
-        return (List<Answer>)answerRepository.findAll();
-    }
-    
-    // Ehka pitaa muokata id ---> answerId/InquiryId
-    
-    @RequestMapping(value = "/questions/{id}/answers", method = RequestMethod.GET)
-    public @ResponseBody Optional<Question> questionRest(@PathVariable("id") Long id) {
-        return questionRepository.findById(id);  
-    }
-    
-    //Mahdollistaa uuden vastauksen tallentamisen
-    @RequestMapping(value = "/answers", method = RequestMethod.POST)
-    public @ResponseBody Answer saveAnswerRest(@RequestBody Answer answer) {
-    	return answerRepository.save(answer);
-    }
-    
-    
+	@Autowired
+	private QuestionRepository questionRepository;
+
+	@RequestMapping(value = "/answers", method = RequestMethod.GET)
+	public @ResponseBody List<Answer> answerListRest() {
+		return (List<Answer>) answerRepository.findAll();
+	}
+
+	// Ehka pitaa muokata id ---> answerId/InquiryId
+
+	@RequestMapping(value = "/questions/{id}/answers", method = RequestMethod.GET)
+	public @ResponseBody Optional<Question> questionRest(@PathVariable("id") Long id) {
+		return questionRepository.findById(id);
+	}
+
+	// Mahdollistaa uuden vastauksen tallentamisen
+	@RequestMapping(value = "/questions/{id}/answers", method = RequestMethod.POST)
+	public @ResponseBody Answer saveAnswerRest(@PathVariable("id") Long questionId, @RequestBody Answer answer) {
+		Optional<Question> questionOptional = questionRepository.findById(questionId);
+		answer.setQuestion(questionOptional.get());
+		return answerRepository.save(answer);
+		
+	}
+
 }
