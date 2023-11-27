@@ -33,7 +33,6 @@ public class AnswerRestControlle {
 	}
 
 	// Ehka pitaa muokata id ---> answerId/InquiryId
-
 	@RequestMapping(value = "/questions/{id}/answers", method = RequestMethod.GET)
 	public @ResponseBody Optional<Question> questionRest(@PathVariable("id") Long id) {
 		return questionRepository.findById(id);

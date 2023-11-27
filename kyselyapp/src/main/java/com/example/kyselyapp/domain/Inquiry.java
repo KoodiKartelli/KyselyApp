@@ -16,10 +16,10 @@ public class Inquiry {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long inquiryid;
+	private Long inquiryid;
 
-	String title;
-	String description;
+	private String title;
+	private String description;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "inquiry")
 	@JsonIgnoreProperties("inquiry")

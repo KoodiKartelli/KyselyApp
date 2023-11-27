@@ -18,8 +18,8 @@ public class Question {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long questionId;
-	String text;
+	private Long questionId;
+	private String text;
 
 	@ManyToOne
 	@JsonIgnoreProperties("questions")
@@ -29,6 +29,10 @@ public class Question {
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	@JsonIgnoreProperties("question")
 	private List<Answer> answers;
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
+	@JsonIgnoreProperties("question")
+	private List<Option> options;
 
 	public Question(String text, Inquiry inquiry) {
 		this.text = text;
