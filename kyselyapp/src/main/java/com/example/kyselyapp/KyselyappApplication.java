@@ -8,6 +8,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.example.kyselyapp.domain.Option;
+import com.example.kyselyapp.domain.OptionRepository;
 import com.example.kyselyapp.domain.Answer;
 import com.example.kyselyapp.domain.AnswerRepository;
 import com.example.kyselyapp.domain.Inquiry;
@@ -24,7 +26,7 @@ public class KyselyappApplication {
 	
 @Bean
 
-public CommandLineRunner demo(Inquiryrepository inquiryRepository, QuestionRepository questionRepository, AnswerRepository answerRepository) {
+public CommandLineRunner demo(Inquiryrepository inquiryRepository, QuestionRepository questionRepository, AnswerRepository answerRepository, OptionRepository optionRepostitory) {
     return (args) -> {
         List<Question> questions1 = new ArrayList<>();
 
@@ -116,18 +118,28 @@ public CommandLineRunner demo(Inquiryrepository inquiryRepository, QuestionRepos
         
         inquiryRepository.save(inquiry3);
         
-        Answer answer23 = new Answer("No hyi", question8);
+        Option option1 = new Option("Kyllä", question8);
+        optionRepostitory.save(option1);
+        Option option2 = new Option("Ei", question8);
+        optionRepostitory.save(option2);
+        
+        Answer answer23 = new Answer(question8, option1);
         answerRepository.save(answer23);
-        Answer answer24 = new Answer("Kuuluu", question8);
+        Answer answer24 = new Answer(question8, option2);
         answerRepository.save(answer24);
-        Answer answer25 = new Answer("Riippuu pizzasta, eli joo kai", question8);
+        Answer answer25 = new Answer(question8, option2);
         answerRepository.save(answer25);
         
-        Answer answer26 = new Answer("Kissat!!!", question9);
+        Option option3 = new Option("Kissat", question9);
+        optionRepostitory.save(option3);
+        Option option4 = new Option("Koirat", question9);
+        optionRepostitory.save(option4);
+        
+        Answer answer26 = new Answer(question9, option3);
         answerRepository.save(answer26);
-        Answer answer27 = new Answer("Koirat", question9);
+        Answer answer27 = new Answer(question9, option4);
         answerRepository.save(answer27);
-        Answer answer28 = new Answer("KOIRAT", question9);
+        Answer answer28 = new Answer(question9, option3);
         answerRepository.save(answer28);
         		
         Answer answer29 = new Answer("Telekinesia", question10);

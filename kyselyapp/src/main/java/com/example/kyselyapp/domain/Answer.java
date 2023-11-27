@@ -11,24 +11,35 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Answer {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	Long answerId;
 	String answer;
-	
+
 	@ManyToOne
 	@JsonIgnoreProperties("answers")
 	@JoinColumn(name = "questionId")
 	private Question question;
+
+	@ManyToOne
+	@JsonIgnoreProperties("answer")
+	@JoinColumn(name = "optionId")
+	private Option options;
 
 	public Answer(String answer, Question question) {
 		super();
 		this.answer = answer;
 		this.question = question;
 	}
-	
-	public Answer() {		
+
+	public Answer(Question question, Option options) {
+		super();
+		this.question = question;
+		this.options = options;
+	}
+
+	public Answer() {
 	}
 
 	public Long getAnswerId() {
@@ -55,10 +66,17 @@ public class Answer {
 		this.question = question;
 	}
 
+	public Option getOptions() {
+		return options;
+	}
+
+	public void setOptions(Option options) {
+		this.options = options;
+	}
+
 	@Override
 	public String toString() {
 		return "Answers [answerId=" + answerId + ", answer=" + answer + ", question=" + question + "]";
 	}
 
-	
 }
