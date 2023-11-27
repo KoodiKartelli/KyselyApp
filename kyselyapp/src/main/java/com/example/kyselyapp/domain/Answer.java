@@ -1,5 +1,6 @@
 package com.example.kyselyapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -19,13 +20,22 @@ public class Answer {
 
 	@ManyToOne
 	@JsonIgnoreProperties("answers")
+	@JsonBackReference
 	@JoinColumn(name = "questionId")
 	private Question question;
 
 	@ManyToOne
 	@JsonIgnoreProperties("answer")
+	@JsonBackReference
 	@JoinColumn(name = "optionId")
-	private Option options;
+	private Option option;
+
+	public Answer(String answer, Question question, Option option) {
+		super();
+		this.answer = answer;
+		this.question = question;
+		this.option = option;
+	}
 
 	public Answer(String answer, Question question) {
 		super();
@@ -36,7 +46,7 @@ public class Answer {
 	public Answer(Question question, Option options) {
 		super();
 		this.question = question;
-		this.options = options;
+		this.option = options;
 	}
 
 	public Answer() {
@@ -66,12 +76,12 @@ public class Answer {
 		this.question = question;
 	}
 
-	public Option getOptions() {
-		return options;
+	public Option getOption() {
+		return option;
 	}
 
-	public void setOptions(Option options) {
-		this.options = options;
+	public void setOption(Option option) {
+		this.option = option;
 	}
 
 	@Override
