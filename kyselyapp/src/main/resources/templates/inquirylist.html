@@ -5,41 +5,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
     <title>Inquiry</title>
 </head>
 <body>
     <h1>Inquiry List</h1>
-    
-
-    
-    <table>
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Inquiry Id</th>
                 <th>Title</th>
                 <th>Description</th>             
             </tr>            
-        </thead>
-        
+        </thead>  
         <tbody>
-        
-
-
         <th:block th:each="inquiry : ${inquiries}">
             <tr>
                 <td th:text="${inquiry.inquiryid}"></td>
                 <td th:text="${inquiry.title}"></td>
                 <td th:text="${inquiry.description}"></td>
-               <td><a th:href="@{/questionlist/{id}(id=${inquiry.inquiryid})}">Show Question</a>
-
-            </tr>
-
-                
+                <td><a th:href="@{/questionlist/{id}(id=${inquiry.inquiryid})}" class="btn btn-success">Show Question</a>
+            </tr>     
         </th:block>
-        
         </tbody>
     </table>
-
-    <a href="/addinquiry">Add New Inquiry</a>
+    <a href="/addinquiry" class="btn btn-info">Add New Inquiry</a>
 </body>
 </html>

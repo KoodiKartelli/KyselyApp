@@ -20,14 +20,16 @@ public class QuestionController {
 	@Autowired
 	private QuestionRepository questionRepository;
 	
-	@Autowired Inquiryrepository inquiryRepository;
+	@Autowired 
+	 private Inquiryrepository inquiryRepository;
 
 	//Palauttaa yhden kyselyn kysymykset
 	@RequestMapping(value="/questionlist/{inquiryid}", method = RequestMethod.GET)
 	public String showQuestionsByInquiryId(@PathVariable("inquiryid") Long inquiryid, Model model){
+		Inquiry inquiry = inquiryRepository.findById(inquiryid).get();
 		List<Question> questions = questionRepository.findByInquiryInquiryid(inquiryid);
 		model.addAttribute("questions", questions);
-		model.addAttribute("inquiryid", inquiryid);
+		model.addAttribute("inquiry", inquiry);
 		return "questionlist";
 	}
 
