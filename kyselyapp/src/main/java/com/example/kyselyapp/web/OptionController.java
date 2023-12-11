@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.kyselyapp.domain.Inquiry;
 import com.example.kyselyapp.domain.Option;
 import com.example.kyselyapp.domain.OptionRepository;
 import com.example.kyselyapp.domain.Question;

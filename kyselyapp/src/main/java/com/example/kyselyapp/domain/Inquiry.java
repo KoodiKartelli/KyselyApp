@@ -66,6 +66,7 @@ public class Inquiry {
 	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
+	
 
 	@Override
 	public String toString() {

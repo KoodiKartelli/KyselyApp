@@ -28,11 +28,11 @@ public class Question {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	@JsonIgnoreProperties("question")
-	private List<Answer> answers;
+	private List<Option> options;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
 	@JsonIgnoreProperties("question")
-	private List<Option> options;
+	private List<Answer> answers;
 
 	public Question(String text, Inquiry inquiry) {
 		this.text = text;
@@ -57,10 +57,10 @@ public class Question {
 	public void setText(String text) {
 		this.text = text;
 	}
-	
+
 	public void setInquiry(Inquiry inquiry) {
-        this.inquiry = inquiry;
-    }
+		this.inquiry = inquiry;
+	}
 
 	public Inquiry getInquiry() {
 		return inquiry;
@@ -72,6 +72,14 @@ public class Question {
 
 	public void setAnswers(List<Answer> answers) {
 		this.answers = answers;
+	}
+
+	public List<Option> getOptions() {
+		return options;
+	}
+
+	public void setOptions(List<Option> options) {
+		this.options = options;
 	}
 
 	@Override

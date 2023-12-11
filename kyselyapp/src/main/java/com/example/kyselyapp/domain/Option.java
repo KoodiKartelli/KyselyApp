@@ -29,7 +29,7 @@ public class Option {
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "option")
 	@JsonIgnoreProperties({"option", "question"}) 
-	private List<Answer> answers;// answers
+	private List<Answer> answer;// answers
 
 	public Option(String optionText, Question question) {
 		this.optionText = optionText;
@@ -64,11 +64,11 @@ public class Option {
 	}
 
 	public List<Answer> getAnswer() {
-		return answers;
+		return answer;
 	}
 
-	public void setAnswer(List<Answer> answers) {
-		this.answers = answers;
+	public void setAnswer(List<Answer> answer) {
+		this.answer = answer;
 	}
 
 	@Override
