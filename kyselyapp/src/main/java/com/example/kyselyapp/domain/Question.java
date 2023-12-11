@@ -3,7 +3,6 @@ package com.example.kyselyapp.domain;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -28,12 +27,10 @@ public class Question {
 	private Inquiry inquiry;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
-	@JsonManagedReference
 	@JsonIgnoreProperties("question")
 	private List<Answer> answers;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "question")
-	@JsonManagedReference
 	@JsonIgnoreProperties("question")
 	private List<Option> options;
 

@@ -1,6 +1,5 @@
 package com.example.kyselyapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
@@ -20,13 +19,11 @@ public class Answer {
 
 	@ManyToOne
 	@JsonIgnoreProperties("answers")
-	@JsonBackReference
 	@JoinColumn(name = "questionId")
 	private Question question;
 
 	@ManyToOne
-	@JsonIgnoreProperties("answer")
-	@JsonBackReference
+	@JsonIgnoreProperties({"answer", "question"})
 	@JoinColumn(name = "optionId")
 	private Option option;
 

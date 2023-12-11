@@ -32,7 +32,7 @@ public class OptionRestController {
         return questionRepository.findById(questionId);
     }
 
-    //Saattaa olla turha
+    //On turha
     @RequestMapping(value = "/questions/{id}/options", method = RequestMethod.POST)
     public @ResponseBody Option saveOptionRest(@PathVariable("id") Long questionId, @RequestBody Option option) {
         Optional<Question> questionOptional = questionRepository.findById(questionId);

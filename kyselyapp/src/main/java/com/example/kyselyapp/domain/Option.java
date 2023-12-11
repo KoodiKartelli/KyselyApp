@@ -3,7 +3,6 @@ package com.example.kyselyapp.domain;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -29,9 +28,8 @@ public class Option {
 	private Question question;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "option")
-	@JsonManagedReference
-	@JsonIgnoreProperties("option")  // Correct property name
-	private List<Answer> answer;
+	@JsonIgnoreProperties({"option", "question"}) 
+	private List<Answer> answers;// answers
 
 	public Option(String optionText, Question question) {
 		this.optionText = optionText;
@@ -66,11 +64,11 @@ public class Option {
 	}
 
 	public List<Answer> getAnswer() {
-		return answer;
+		return answers;
 	}
 
-	public void setAnswer(List<Answer> answer) {
-		this.answer = answer;
+	public void setAnswer(List<Answer> answers) {
+		this.answers = answers;
 	}
 
 	@Override

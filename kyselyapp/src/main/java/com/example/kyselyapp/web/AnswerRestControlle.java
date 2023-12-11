@@ -41,6 +41,7 @@ public class AnswerRestControlle {
 	// Mahdollistaa uuden vastauksen tallentamisen
 	@RequestMapping(value = "/questions/{id}/answers", method = RequestMethod.POST)
 	public @ResponseBody Answer saveAnswerRest(@PathVariable("id") Long questionId, @RequestBody Answer answer) {
+		System.out.println("yrittää tallentaa vastauksen :)");
 		Optional<Question> questionOptional = questionRepository.findById(questionId);
 		answer.setQuestion(questionOptional.get());
 		return answerRepository.save(answer);
