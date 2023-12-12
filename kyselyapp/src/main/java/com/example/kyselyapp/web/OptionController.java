@@ -44,9 +44,12 @@ public class OptionController {
     //Tallettaa lomakkeelta tulleet vastausvaihtoehdon tiedot tietokantaan
     @RequestMapping(value="/saveoption/{questionId}", method = RequestMethod.POST)
 	public String saveOption(@PathVariable("questionId") Long questionId, Option option, Model model) {
-    	option.setQuestion(questionRepository.findById(questionId).get());
+    	Question question = questionRepository.findById(questionId).get();
+    	option.setQuestion(question);
+		Long inquiryId = question.getInquiry().getInquiryid();
+		System.out.println("InquiryId täällä: " + inquiryId);
     	optionRepository.save(option);
-    	return "redirect:/questionlist/{inquiryid}";
+    	return "redirect:/questionlist/" + inquiryId;
 }
     //Palauttaa yhden kysymyksen vastausvaihtoehdot
 	@RequestMapping(value="/optionlist/{questionId}", method = RequestMethod.GET)
