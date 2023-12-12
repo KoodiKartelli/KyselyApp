@@ -141,11 +141,11 @@ public class KyselyappApplication {
 			Option option4 = new Option("Koirat", question9);
 			optionRepostitory.save(option4);
 
-			Answer answer26 = new Answer(question9, option3);
+			Answer answer26 = new Answer(option3.getOptionText(), question9, option3);
 			answerRepository.save(answer26);
-			Answer answer27 = new Answer(question9, option4);
+			Answer answer27 = new Answer(option4.getOptionText(), question9, option4);
 			answerRepository.save(answer27);
-			Answer answer28 = new Answer(question9, option3);
+			Answer answer28 = new Answer(option3.getOptionText(), question9, option3);
 			answerRepository.save(answer28);
 
 			Answer answer29 = new Answer("Telekinesia", question10);
