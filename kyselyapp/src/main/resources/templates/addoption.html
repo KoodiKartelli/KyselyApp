@@ -10,7 +10,6 @@
     <form th:object="${option}" th:action="@{/saveoption/{id}(id=${questionId})}" method="post">
         <label for="option">Option:</label>
         <input type="text" id="option" th:field="${option.optionText}" /><br>
-        <!-- Corrected th:field syntax -->
         <input type="hidden" th:field="${option.question.questionId}">
         <input type="submit" value="Add" class="btn btn-info"/>
     </form>
