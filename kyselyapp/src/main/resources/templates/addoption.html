@@ -14,6 +14,6 @@
         <input type="hidden" th:field="${option.question.questionId}">
         <input type="submit" value="Add" class="btn btn-info"/>
     </form>
-    <a th:href="@{/questionlist/{id}(id=${question.inquiry.inquiryid})}" class="btn btn-danger" style="margin-top: 10px;">Back To Questions</a>
+    <a th:href="@{/questionlist/{id}(id=${inquiryid})}" class="btn btn-danger" style="margin-top: 10px;">Back To Questions</a>
 </body>
 </html>
