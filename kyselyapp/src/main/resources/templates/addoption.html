@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+    <title>Add option</title>
+</head>
+<body>
+    <h1>Add an option</h1>
+    <form th:object="${option}" th:action="@{/saveoption/{id}(id=${questionId})}" method="post">
+        <label for="option">Option:</label>
+        <input type="text" id="option" th:field="${option.optionText}" /><br>
+        <!-- Corrected th:field syntax -->
+        <input type="hidden" th:field="${option.question.questionId}">
+        <input type="submit" value="Add" class="btn btn-info"/>
+    </form>
+    <a th:href="@{/questionlist/{id}(id=${question.inquiry.inquiryid})}" class="btn btn-danger" style="margin-top: 10px;">Back To Questions</a>
+</body>
+</html>

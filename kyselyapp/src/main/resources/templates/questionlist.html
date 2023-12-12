@@ -15,7 +15,8 @@
         <tbody>		 
             <th:block th:each="question : ${questions}">
                 <tr>
-                    <td th:text="${question.text}"></td>                     
+                    <td th:text="${question.text}"></td>
+                    <td><a th:href="@{/addoption/{id}(id=${question.questionId})}" class="btn btn-success" style="margin-bottom: 5px;">Add option</a></td>                 
                 </tr>
             </th:block>
         </tbody>
