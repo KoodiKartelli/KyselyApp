@@ -27,12 +27,13 @@ public class AnswerRestControlle {
 	@Autowired
 	private QuestionRepository questionRepository;
 
+	// Palauttaa kaikki vastaukset JSON-muodossa
 	@RequestMapping(value = "/answers", method = RequestMethod.GET)
 	public @ResponseBody List<Answer> answerListRest() {
 		return (List<Answer>) answerRepository.findAll();
 	}
 
-	// Ehka pitaa muokata id ---> answerId/InquiryId
+	// Palauttaa kysymyjsen vastaukset JSON-muodossa
 	@RequestMapping(value = "/questions/{id}/answers", method = RequestMethod.GET)
 	public @ResponseBody Optional<Question> questionRest(@PathVariable("id") Long id) {
 		return questionRepository.findById(id);
@@ -43,8 +44,7 @@ public class AnswerRestControlle {
 	public @ResponseBody Answer saveAnswerRest(@PathVariable("id") Long questionId, @RequestBody Answer answer) {
 		Optional<Question> questionOptional = questionRepository.findById(questionId);
 		answer.setQuestion(questionOptional.get());
-		return answerRepository.save(answer);
-		
+		return answerRepository.save(answer);	
 	}
 
 }

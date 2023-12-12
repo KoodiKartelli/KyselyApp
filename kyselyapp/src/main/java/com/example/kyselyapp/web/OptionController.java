@@ -28,7 +28,7 @@ public class OptionController {
 	private Inquiryrepository inquiryRepository;
 
 
-    //Palauttaa vastausvaihtoedon luonti lommakkeen
+    // Palauttaa vastausvaihtoedon luonti lommakkeen
     @RequestMapping(value = "/addoption/{questionId}", method = RequestMethod.GET)
 	public String addOptionForm(@PathVariable("questionId") Long questionId, Model model) {
 	    Question question = questionRepository.findById(questionId).get();
@@ -38,10 +38,10 @@ public class OptionController {
 		question.setInquiry(inquiryRepository.findById(inquiryId).get());
 		model.addAttribute("inquiryid", inquiryId);
 	    model.addAttribute("option", newOption);
-        return "addoption"; //addquestion.html
-}
+        return "addoption"; //addopotion.html
+	}
     
-    //Tallettaa lomakkeelta tulleet vastausvaihtoehdon tiedot tietokantaan
+    // Tallettaa lomakkeelta tulleet vastausvaihtoehdon tiedot tietokantaan
     @RequestMapping(value="/saveoption/{questionId}", method = RequestMethod.POST)
 	public String saveOption(@PathVariable("questionId") Long questionId, Option option, Model model) {
     	Question question = questionRepository.findById(questionId).get();
@@ -50,15 +50,6 @@ public class OptionController {
 		System.out.println("InquiryId täällä: " + inquiryId);
     	optionRepository.save(option);
     	return "redirect:/questionlist/" + inquiryId;
-}
-    //Palauttaa yhden kysymyksen vastausvaihtoehdot
-	@RequestMapping(value="/optionlist/{questionId}", method = RequestMethod.GET)
-	public String showQuestionsByInquiryId(@PathVariable("questionId") Long questionId, Model model){
-		Question question = questionRepository.findById(questionId).get();
-		List<Option> options = optionRepository.findByQuestionQuestionId(questionId);
-		model.addAttribute("options", options);
-		model.addAttribute("question", question);
-		return "optionlist";
 	}
 
 }

@@ -15,21 +15,21 @@ public class InquiryController {
     @Autowired
     private Inquiryrepository inquiryRepository;
     
-    //Palauttaa kaikki kyselyt
+    // Palauttaa kaikki kyselyt
     @RequestMapping(value = "/inquirylist", method = RequestMethod.GET)
     public String getInquiries(Model model) {
      model.addAttribute("inquiries", inquiryRepository.findAll());
-     return "inquirylist";
+     return "inquirylist"; //inquirylist.html
     }
 
-    //Palauttaa kyselyn luonti lomakkeen
+    // Palauttaa kyselyn luonti lomakkeen
     @RequestMapping(value = "/addinquiry")
     public String addInquiry(Model model) {
          model.addAttribute("inquiry", new Inquiry());
-         return "addinquiry";
+         return "addinquiry"; //addinquiry.html
     }
 
-    //Tallettaa lomakkeelta tulleet kyselyn tiedot tietokantaan
+    // Tallettaa lomakkeelta tulleet kyselyn tiedot tietokantaan
      @RequestMapping(value = "/save", method = RequestMethod.POST)
      public String save (Inquiry inquiry) {
         inquiryRepository.save(inquiry);

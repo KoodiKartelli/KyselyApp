@@ -22,21 +22,11 @@ public class OptionRestController {
 
     @Autowired
 	private QuestionRepository questionRepository;
-
-    @Autowired
-    private OptionRepository optionRepository;
     
-    //Palauttaa tietyn kysymyksen vastausvaihtoehdot
+    // Palauttaa tietyn kysymyksen vastausvaihtoehdot JSON-muodossa
     @RequestMapping(value = "/questions/{id}/options", method = RequestMethod.GET)
     public @ResponseBody Optional<Question> optionRest(@PathVariable("id") Long questionId) {
         return questionRepository.findById(questionId);
     }
 
-    //On turha
-    @RequestMapping(value = "/questions/{id}/options", method = RequestMethod.POST)
-    public @ResponseBody Option saveOptionRest(@PathVariable("id") Long questionId, @RequestBody Option option) {
-        Optional<Question> questionOptional = questionRepository.findById(questionId);
-        option.setQuestion(questionOptional.get());
-        return optionRepository.save(option);
-    }
 }

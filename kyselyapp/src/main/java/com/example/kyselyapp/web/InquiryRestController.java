@@ -26,16 +26,19 @@ public class InquiryRestController{
 	@Autowired
 	private QuestionRepository questionRepository;
 
+	// Palauttaa kaikki kyselyt JSON-muodossa
 	@RequestMapping(value = "/inquiries", method = RequestMethod.GET)
 	public @ResponseBody List<Inquiry> inquiryListRest() {
 		return (List<Inquiry>) inquiryRepository.findAll();
 	}
 
+	// Palauttaa kyselyn vastaukset JSON-muodossa
 	@RequestMapping(value = "/inquiries/{id}/questions", method = RequestMethod.GET)
 	public @ResponseBody Optional<Inquiry> inquiryRest(@PathVariable("id") Long id) {
 		return inquiryRepository.findById(id);
 	}
 
+	// Palauttaa kaikki kysymykset JSON-muodossa
 	@RequestMapping(value = "/questions", method = RequestMethod.GET)
 	public @ResponseBody List<Question> questionListRest() {
 		return (List<Question>)questionRepository.findAll();
